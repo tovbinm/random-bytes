@@ -5,7 +5,8 @@
 
 var express = require('express');
 
-var app = module.exports = express.createServer();
+var app = module.exports = express.createServer(), io = require('socket.io').listen(app);
+;
 
 // Configuration
 
@@ -42,4 +43,15 @@ app.get('/donate',function(req, res){
 });
 
 app.listen(3000);
+
+
+io.sockets.on('connection', function (socket) {
+  console.log("socket started");
+  console.log(socket.id);
+  socket.emit('work', {});
+  socket.on('done', function (data) {
+    console.log("done");
+    socket.emit('work', {});
+  });
+});
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
