@@ -5,7 +5,8 @@
 require('nko')('tjR85kBUiEdHVXGx');
 
 var express = require('express');
-var app = module.exports = express.createServer();
+
+var app = module.exports = express.createServer(), io = require('socket.io').listen(app);
 
 // Configuration
 
@@ -31,9 +32,26 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'Express'
+    title: 'Random Bytes'
   });
 });
 
+app.get('/donate',function(req, res){
+  res.render('donate', {
+		title:"Donation"
+	});
+});
+
 app.listen(3000);
+
+
+io.sockets.on('connection', function (socket) {
+  console.log("socket started");
+  console.log(socket.id);
+  socket.emit('work', {});
+  socket.on('done', function (data) {
+    console.log("done");
+    socket.emit('work', {});
+  });
+});
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
