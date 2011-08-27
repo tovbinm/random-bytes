@@ -10,7 +10,9 @@
   		"jade": ">= 0.0.1",
   		"express-mongoose": "0.0.2",
   		"mongoose" : "2.0.2",
-		"socket.io" : "0.7.9"
+		"socket.io":"0.7.9",
+                "knox":"*"
+
 	}
 }
 

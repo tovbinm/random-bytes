@@ -2,3 +2,7 @@ mongod:
   host: localhost
   port: 27017
   db: mapred_db
+s3:
+  bucket: random-bytes
+  secret: DA2eMSJp0GY2dS9rGbAaE/UnzCK85gxunElKDifY
+  key: AKIAIFE5QGFDZRYT5ZLQ
