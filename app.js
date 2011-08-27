@@ -2,11 +2,11 @@
 /**
  * Module dependencies.
  */
+require('nko')('tjR85kBUiEdHVXGx');
 
 var express = require('express');
 
 var app = module.exports = express.createServer(), io = require('socket.io').listen(app);
-;
 
 // Configuration
 
