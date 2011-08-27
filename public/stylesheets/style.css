@@ -488,3 +488,10 @@ a:hover {
 	font-size: 30px;
 	color: #FFFFFF;
 }
+
+.working {
+    color:red
+}
+.idle {
+     color:green
+}
