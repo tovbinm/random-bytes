@@ -2,7 +2,10 @@ require('nko')('tjR85kBUiEdHVXGx');
 
 
 var CONFIG = require('config');
+var MDB = require('./db/mongod').MDB;
 
+//Mongo db client
+var mdb = new MDB();
 
 // Module dependencies.
 var express = require('express');
@@ -19,7 +22,7 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', function(req, res) {
-    res.send('Hello, ' + CONFIG.mongod.host);
+    res.send('Hello, duude');
 });
 
 app.listen(3000);
