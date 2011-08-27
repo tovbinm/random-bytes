@@ -35,5 +35,11 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/donate',function(req, res){
+  res.render('donate', {
+		title:"Donation"
+	});
+});
+
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
