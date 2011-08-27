@@ -1,17 +1,15 @@
 $(document).ready(function(){
-    var socket = io.connect('http://localhost');
-      var paused = false;
-$("#pause").click(function(){
+    var socket = io.connect('/slots');
+    var paused = false;
+    $("#pause").click(function(){
        if (paused){
-		socket.emit('done', { my: 'data' })
-		$(this).html("pause");	
-       }
-	else{
-		$(this).html("resume");
+    		socket.emit('done', { my: 'data' })
+    		$(this).html("pause");	
         }
-       paused=!paused
-	
-       
+       else{
+    		$(this).html("resume");
+        }
+        paused=!paused
    });
     socket.on('work', function (data) {
     console.log("working!!");
@@ -20,7 +18,7 @@ $("#pause").click(function(){
     setTimeout(function(){
     	console.log("done!!");
         $("#status").html("<p>idle!!</p>");
-	$("#status").toggleClass("working idle")
+	     $("#status").toggleClass("working idle")
         if (!paused){
     		socket.emit('done', { my: 'data' });
 	}

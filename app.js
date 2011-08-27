@@ -29,29 +29,37 @@ app.configure('production', function(){
 });
 
 // Routes
-
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'Gridjs'
+    title: 'Gridjs',
+    slots: io.of('/slots').clients().length
   });
 });
 
-app.get('/donate',function(req, res){
-  res.render('donate', {
-		title:"Donation"
+app.get('/joingrid',function(req, res){
+  res.render('joingrid', {
+		title: 'Gridjs - computing…'
 	});
 });
+
+
+
 
 app.listen(process.env.NODE_ENV === 'production' ? 80 : 3000);
 
 
-io.sockets.on('connection', function (socket) {
-  console.log("socket started");
-  console.log(socket.id);
+io.of('/viewers').on('connection', function (socket) {
+  socket.emit('status', {slots:io.of('/slots').clients().length});
+  socket.on('status', function (data) {
+     socket.emit('status', {slots:io.of('/slots').clients().length});  
+  });
+});
+
+io.of('/slots').on('connection', function (socket) {
   socket.emit('work', {});
   socket.on('done', function (data) {
-    console.log("done");
     socket.emit('work', {});
   });
 });
+
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
