@@ -1,55 +1,45 @@
 var CONFIG = require('config').mongod;
-var mongod = require('mongodb');
+var mongoose = require('mongoose');
+Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
+
+mongoose.connect('mongodb://'+CONFIG.host+':'+CONFIG.port+'/'+CONFIG.db);
+
+var File = new Schema({
+  id      : ObjectId,
+  name    : {type : String, default : '', required : true},
+  offset  : {type : Number, default : 0},
+  length  : {type : Number, default : 0}
+});
+
+var Task = new Schema({
+  id      : ObjectId,
+  jobid   : {type : String, default : '', required : true},
+  input   : [File],
+  output  : [File],
+  status  : {type : String, default : 'pending', enum: ['pending','running','failed','completed']},
+  message : String,
+  nodeid  : {type : String, default : ''}
+});
+
+var Job = new Schema({
+  id           : ObjectId,
+  input        : [File],
+  output       : [File],
+  maps         : [Task],
+  reduces      : [Task],
+  created_at   : {type : Date, default : Date.now},
+  finished_at  : {type : Date, default : Date.now},
+  status       : {type : String, default : 'pending', enum: ['pending','running','failed','completed']},
+  message      : String
+});
 
 
-MDB = function() {
-  this.db = new mongod.Db(CONFIG.db, new mongod.Server(CONFIG.host, CONFIG.port, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
-};
+mongoose.model('Job', Job);
+var Job = exports.Job = mongoose.model('Job');
 
-MDB.prototype.getCollection= function(collection, callback) {
-  this.db.collection(collection, function(error, theCollection) {
-    if( error ) callback(error);
-    else callback(null, theCollection);
-  });
-};
+mongoose.model('File', File);
+var File = exports.File = mongoose.model('File');
 
-MDB.prototype.findAll = function(collection,callback) {
-    this.getCollection(collection,function(error, theCollection) {
-      if( error ) callback(error)
-      else {
-          theCollection.find().toArray(function(error, results) {
-          if( error ) callback(error)
-          else callback(null, results)
-        });
-      }
-    });
-};
-
-MDB.prototype.findById = function(collection, id, callback) {
-    this.getCollection(collection, function(error, theCollection) {
-      if( error ) callback(error)
-      else {
-          theCollection.findOne({_id: id}, function(error, result) {
-          if( error ) callback(error)
-          else callback(null, result)
-        });
-      }
-    });
-};
-
-MDB.prototype.save = function(collection, items, callback) {
-    this.getCollection(collection, function(error, theCollection) {
-      if( error ) callback(error)
-      else {
-        if( typeof(items.length)=="undefined")
-          items = [items];
-
-        theCollection.insert(items, function() {
-          callback(null, items);
-        });
-      }
-    });
-};
-
-exports.MDB = MDB;
+mongoose.model('Task', Task);
+var Task = exports.Task = mongoose.model('Task');
+  

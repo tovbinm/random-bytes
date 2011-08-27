@@ -2,9 +2,9 @@
 /**
  * Module dependencies.
  */
+require('nko')('tjR85kBUiEdHVXGx');
 
 var express = require('express');
-
 var app = module.exports = express.createServer();
 
 // Configuration

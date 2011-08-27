@@ -8,6 +8,8 @@
   		"mongodb":"0.9.6-13",
   		"express":"2.4.6",
   		"stylus": ">= 0.0.1",
-  		"jade": ">= 0.0.1"
+  		"jade": ">= 0.0.1",
+  		"express-mongoose": "0.0.2",
+  		"mongoose" : "2.0.2"
 	}
 }
