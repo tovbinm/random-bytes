@@ -39,7 +39,7 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'Random Bytes'
+    title: 'Gridjs'
   });
 });
 
@@ -49,9 +49,8 @@ app.get('/donate',function(req, res){
 	});
 });
 
+app.listen(process.env.NODE_ENV === 'production' ? 80 : 3000);
 
-
-app.listen(3000);
 
 
 io.sockets.on('connection', function (socket) {
