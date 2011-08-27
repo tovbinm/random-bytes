@@ -49,7 +49,7 @@ app.get('/joingrid',function(req, res){
 	});
 });
 
-app.listen(process.env.NODE_ENV === 'production' ? 80 : 3000, function() {
+app.listen(process.env.NODE_ENV === 'production' ? 3000 : 3000, function() {
   console.log('Ready');
   // if run as root, downgrade to the owner of this file
   if (process.getuid() === 0)
