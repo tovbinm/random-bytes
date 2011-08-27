@@ -1,0 +1,7 @@
+{
+	"name":"random-bytes-project",
+	"version":"0.1.0",
+	"dependencies":{
+		"nko":"*"
+	}
+}
