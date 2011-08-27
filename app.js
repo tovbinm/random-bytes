@@ -5,9 +5,16 @@
 require('nko')('tjR85kBUiEdHVXGx');
 
 var express = require('express');
+var knox = require('knox');
 
 var app = module.exports = express.createServer(), io = require('socket.io').listen(app);
-
+var s3_conf = require('config').s3
+console.log(s3_conf)
+var s3_client = knox.createClient({
+    key: s3_conf.key
+  , secret: s3_conf.secret
+  , bucket: s3_conf.bucket
+});
 // Configuration
 
 app.configure(function(){
@@ -41,6 +48,8 @@ app.get('/donate',function(req, res){
 		title:"Donation"
 	});
 });
+
+
 
 app.listen(3000);
 
