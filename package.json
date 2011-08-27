@@ -2,6 +2,9 @@
 	"name":"random-bytes-project",
 	"version":"0.1.0",
 	"dependencies":{
-		"nko":"*"
+		"nko":"*",
+		"config":"0.4.3",
+  		"mongodb":"0.9.6-13",
+  		"express":"2.4.6"
 	}
 }

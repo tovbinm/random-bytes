@@ -1,0 +1,4 @@
+mongod:
+  host: localhost
+  port: 27017
+  db: mapred_db
