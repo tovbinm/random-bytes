@@ -1,27 +1,26 @@
-Gridjs, NKO 2011
+Gridjs
 ==============
 
 Gridjs – is a free browser based computational grid, that allows to run distributed computations using MapReduce framework
 
+Developed by:
+@guydou and @tovbin for NKO 2011
 
-Prerequisites
---------
-node (>= 0.4.10) and npm
+### Prerequisites
+node (>= 0.4.10), npm and mongod
 
-Setup
--------
-1.clone with git, cd folder, run npm install, then node ./app.js
-2.to deploy on linode edit deploy.conf and then run 'deploy linode setup; deploy linode' 
+### Setup
+1.
+clone with git, cd folder, run npm install, then node ./app.js
 
-Tested on
----------
+2.
+In orde to deploy on Linode, first edit deploy.conf and then run 'deploy linode setup; deploy linode' 
+
+### Tested on
 Ubuntu, Debian and Mac OSX
 
-
-
-Some usage instructions
-----------
-
+Gridjs usage instructions
+----------------
 1. 
 Each click on “join grid” will open a new browser tab, which will be executing a code making the browser a computation slot for the grid. Anyone can open any amount of browsers and tabs to make the grid faster.
 
