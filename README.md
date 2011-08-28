@@ -4,7 +4,7 @@ Gridjs
 Gridjs – is a free browser based computational grid, that allows to run distributed computations using MapReduce framework
 
 Developed by:
-@guydou and @tovbin for NKO 2011
+@guydou and @tovbinm for NKO 2011
 
 ### Prerequisites
 node (>= 0.4.10), npm and mongod
